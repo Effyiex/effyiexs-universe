@@ -24,10 +24,11 @@ h1 {
 
 @keyframes glitch-pulse-shadow {
   0% {
-    filter: drop-shadow(6px 5px 8px #993366) drop-shadow(-6px -5px 8px #663399) blur(1px) opacity(0.8);
+    filter: drop-shadow(5px 4px 3px #993366CC) drop-shadow(-5px -4px 3px #663399CC) blur(2px);
+    transform: scaleX(1.02);
   }
   100% {
-    filter: drop-shadow(2px 4px 8px #993366) drop-shadow(-2px -4px 8px #663399);
+    filter: drop-shadow(2px 3px 2px #993366CC) drop-shadow(-2px -3px 2px #663399CC);
   }
 }
 
@@ -52,7 +53,7 @@ h1 {
   height: 3em;
   opacity: 0.75;
   filter: drop-shadow(1px 2px 0.5em #993366CC) drop-shadow(-1px -2px 0.5em #663399CC);
-  animation: glitch-pulse-shadow 0.5s ease 0.75s infinite alternate;
+  animation: glitch-pulse-shadow 0.5s ease 0.5s infinite alternate;
 }
 
 .menubar h1 {
@@ -61,7 +62,7 @@ h1 {
   font-size: 2em;
   color: #9966FFCC;
   filter: drop-shadow(1px 2px 0.5em #993366CC) drop-shadow(-1px -2px 0.5em #663399CC);
-  animation: glitch-pulse-shadow 0.5s ease 1s infinite alternate;
+  animation: glitch-pulse-shadow 0.25s ease 0.75s infinite alternate;
   font-weight: normal;
 }
 
@@ -121,6 +122,8 @@ h1 {
   font-size: 4em;
   text-shadow: 0 0 8px #FF339988;
   text-decoration: underline;
+  filter: drop-shadow(1px 2px 0.5em #993366CC) drop-shadow(-1px -2px 0.5em #663399CC);
+  animation: glitch-pulse-shadow 0.75s ease 1s infinite alternate;
 }
 
 .homescreen h2 {
@@ -251,4 +254,6 @@ h1 {
   text-shadow: 0 4px 16px #9933FF88;
   opacity: 1;
   transition: text-shadow 500ms ease;
+  filter: drop-shadow(1px 2px 0.5em #993366CC) drop-shadow(-1px -2px 0.5em #663399CC);
+  animation: glitch-pulse-shadow 0.25s ease 0.5s infinite alternate;
 }
