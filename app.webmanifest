@@ -1,8 +1,8 @@
 {
   "name": "Effyiexs-Universe",
   "short_name": "Effyiexs-Hub",
-  "id": "/",
-  "start_url": "/",
+  "id": "./effyiexs-universe",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#FFFFFF",
   "theme_color": "#CC3399",
