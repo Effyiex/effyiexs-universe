@@ -22,6 +22,15 @@ h1 {
   color: #993366;
 }
 
+@keyframes glitch-pulse-shadow {
+  0% {
+    filter: drop-shadow(6px 5px 8px #993366) drop-shadow(-6px -5px 8px #663399) blur(1px) opacity(0.8);
+  }
+  100% {
+    filter: drop-shadow(2px 4px 8px #993366) drop-shadow(-2px -4px 8px #663399);
+  }
+}
+
 .menubar {
   position: absolute;
   margin: 4px;
@@ -41,16 +50,31 @@ h1 {
   margin: 0.5em;
   width: 3em;
   height: 3em;
+  opacity: 0.75;
+  filter: drop-shadow(1px 2px 0.5em #993366CC) drop-shadow(-1px -2px 0.5em #663399CC);
+  animation: glitch-pulse-shadow 0.5s ease 0.75s infinite alternate;
 }
 
 .menubar h1 {
-  margin-top: 0.25em;
-  margin-left: 0;
+  margin: 0.25em 0.75em 0 0.25em;
   padding: 0;
   font-size: 2em;
   color: #9966FFCC;
-  text-shadow: 1px 1px 2px #993366, -1px -1px 2px #6633FF;
+  filter: drop-shadow(1px 2px 0.5em #993366CC) drop-shadow(-1px -2px 0.5em #663399CC);
+  animation: glitch-pulse-shadow 0.5s ease 1s infinite alternate;
   font-weight: normal;
+}
+
+.menubar h3 {
+  color: #FF66CC66;
+  font-size: 1.5em;
+  margin: 0.625em 0.5em;
+  user-select: none;
+}
+
+.menubar h3:hover {
+  color: #9966FF88;
+  filter: blur(2px);
 }
 
 .wrapper {
@@ -96,6 +120,7 @@ h1 {
 .homescreen h1 {
   font-size: 4em;
   text-shadow: 0 0 8px #FF339988;
+  text-decoration: underline;
 }
 
 .homescreen h2 {
@@ -116,7 +141,7 @@ h1 {
 }
 
 .medialinks.minimized {
-  width: 12em;
+  width: 16em;
   left: auto;
   right: 24px;
   height: 4.5em;
@@ -132,13 +157,47 @@ h1 {
 .medialinks h2 {
   cursor: pointer;
   user-select: none;
-  text-align: center;
+  text-align: left;
   color: #FF99CCAA;
   padding: 0.75em;
+  padding-right: 3em;
   background-color: #0002;
   border-radius: 8px 8px 0 0;
   border: #0004 1px solid;
   margin: 0 0 0.5em 0;
+}
+
+.medialinks.minimized h2 {
+  text-align: center;
+}
+
+.medialinks button {
+  position: absolute;
+  background-color: #0002;
+  border: #0002 1px solid;
+  font-size: 1.75em;
+  right: 0.5em;
+  top: 0.5em;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  color: #663399CC;
+}
+
+.medialinks button i:nth-child(1) {
+  display: none;
+}
+
+.medialinks button i:nth-child(2) {
+  display: block;
+}
+
+.medialinks.minimized button i:nth-child(1) {
+  display: block;
+}
+
+.medialinks.minimized button i:nth-child(2) {
+  display: none;
 }
 
 .medialinks.minimized ul {
