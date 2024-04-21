@@ -24,11 +24,11 @@ h1 {
 
 @keyframes glitch-pulse-shadow {
   0% {
-    filter: drop-shadow(5px 4px 3px #993366CC) drop-shadow(-5px -4px 3px #663399CC) blur(2px);
-    transform: scaleX(1.02);
+    filter: drop-shadow(5px 4px 6px #99336688) drop-shadow(-5px -4px 6px #66339988) blur(3px);
+    transform: scaleX(1.025);
   }
   100% {
-    filter: drop-shadow(2px 3px 2px #993366CC) drop-shadow(-2px -3px 2px #663399CC);
+    filter: drop-shadow(2px 3px 2px #99336688) drop-shadow(-2px -3px 2px #66339988) blur(1px);
   }
 }
 
@@ -57,12 +57,13 @@ h1 {
 }
 
 .menubar h1 {
-  margin: 0.25em 0.75em 0 0.25em;
+  font-family: Nunito, sans-serif;
+  margin: 0.3em 0.75em 0 0.25em;
   padding: 0;
   font-size: 2em;
   color: #9966FFCC;
   filter: drop-shadow(1px 2px 0.5em #993366CC) drop-shadow(-1px -2px 0.5em #663399CC);
-  animation: glitch-pulse-shadow 0.25s ease 0.75s infinite alternate;
+  animation: glitch-pulse-shadow 1s ease 2s infinite alternate;
   font-weight: normal;
 }
 
