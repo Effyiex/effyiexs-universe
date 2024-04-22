@@ -1,12 +1,26 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Silkscreen:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Silkscreen:wght@400;700&display=swap");
 
 body {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
   background-color: #3C333F;
   overflow: hidden;
   margin: 0;
   padding: 0;
   font-family: Nunito, sans-serif;
+}
+
+body.lightmode {
+  background-color: #AADABA;
+  filter: invert(100%) saturate(80%) hue-rotate(55deg);
+}
+
+body.lightmode .lightnegate {
+  filter: invert(100%) hue-rotate(290deg);
 }
 
 h1, h2, h3 {
@@ -24,19 +38,22 @@ h1 {
 
 @keyframes glitch-pulse-shadow {
   0% {
-    filter: drop-shadow(5px 4px 6px #99336688) drop-shadow(-5px -4px 6px #66339988) blur(3px);
-    transform: scaleX(1.025);
+    filter: drop-shadow(8px 6px 8px #99336688) drop-shadow(-8px -6px 8px #66339988) blur(2px);
+    transform: scaleX(1.075);
+  }
+  25% {
+    transform: scaleY(1.025);
   }
   100% {
-    filter: drop-shadow(2px 3px 2px #99336688) drop-shadow(-2px -3px 2px #66339988) blur(1px);
+    filter: drop-shadow(2px 4px 4px #99336688) drop-shadow(-2px -4px 4px #66339988) blur(1px);
   }
 }
 
 .menubar {
   position: absolute;
-  margin: 4px;
+  margin: 6px;
   padding: 0;
-  width: calc(100% - 9px);
+  width: calc(100% - 14px);
   height: 4em;
   background-color: #0006;
   border: #FFFFFF44 1px solid;
@@ -44,27 +61,36 @@ h1 {
   box-shadow: #CC339966 0px 0px 4px,
               inset #9933CC66 0px 0px 12px;
   display: inline-flex;
-  backdrop-filter: blur(8px);
+  flex-direction: row;
+  backdrop-filter: blur(4px);
 }
 
 .menubar img {
-  margin: 0.5em;
+  margin: 0.25em;
   width: 3em;
   height: 3em;
-  opacity: 0.75;
   filter: drop-shadow(1px 2px 0.5em #993366CC) drop-shadow(-1px -2px 0.5em #663399CC);
-  animation: glitch-pulse-shadow 0.5s ease 0.5s infinite alternate;
+  animation: glitch-pulse-shadow 0.25s ease 0.75s infinite alternate;
+  padding: 0.25em;
+  background-color: #4441;
+  border-radius: 50%;
 }
 
 .menubar h1 {
-  font-family: Nunito, sans-serif;
-  margin: 0.3em 0.75em 0 0.25em;
+  margin: 0 0.75em 0 0.5em;
   padding: 0;
-  font-size: 2em;
-  color: #9966FFCC;
-  filter: drop-shadow(1px 2px 0.5em #993366CC) drop-shadow(-1px -2px 0.5em #663399CC);
-  animation: glitch-pulse-shadow 1s ease 2s infinite alternate;
+  font-size: 1.25em;
+  color: #9966FFAA;
+  text-shadow: 2px 4px 0.25em #993366CC, -2px -4px 0.25em #663399CC;
   font-weight: normal;
+  padding-right: 1.25em;
+  padding-top: 0.25em;
+  border-right: #FFF2 2px solid;
+}
+
+.menubar h1 span {
+  margin-left: 0.25em;
+  filter: hue-rotate(22.5deg);
 }
 
 .menubar h3 {
@@ -77,6 +103,49 @@ h1 {
 .menubar h3:hover {
   color: #9966FF88;
   filter: blur(2px);
+}
+
+.menubar .controls {
+  position: absolute;
+  right: 0;
+  background-color: #0002;
+  height: 100%;
+  padding: 0 1em;
+}
+
+.menubar .controls button {
+  background-color: #FFF1;
+  border: #FFF2 1px solid;
+  border-radius: 8px;
+  position: relative;
+  font-size: 1.75em;
+  color: #9933FF88;
+  text-shadow: 0 0 8px #663399;
+  margin-top: 0.25em;
+  height: 1.75em;
+  width: 1.75em;
+  cursor: pointer;
+}
+
+.menubar .controls button:hover {
+  color: #FF339988;
+  text-shadow: 0 0 12px #993366;
+}
+
+body.lightmode .menubar .controls .lightswitch i:nth-child(1) {
+  display: none;
+}
+
+body.lightmode .menubar .controls .lightswitch i:nth-child(2) {
+  display: block;
+}
+
+.menubar .controls .lightswitch i:nth-child(1) {
+  display: block;
+}
+
+.menubar .controls .lightswitch i:nth-child(2) {
+  display: none;
 }
 
 .wrapper {
@@ -100,7 +169,7 @@ h1 {
   height: 100%;
   border-radius: 4px;
   opacity: 0.75;
-  filter: blur(16px);
+  filter: blur(4px);
 }
 
 .homescreen {
@@ -120,16 +189,17 @@ h1 {
 }
 
 .homescreen h1 {
-  font-size: 4em;
-  text-shadow: 0 0 8px #FF339988;
+  font-size: calc(4vh + 4vw);
+  text-shadow: 0 0 8px #FF3399CC, 0 0 128px #9933FFCC;
   text-decoration: underline;
+  text-decoration-color: #9933FF66;
   filter: drop-shadow(1px 2px 0.5em #993366CC) drop-shadow(-1px -2px 0.5em #663399CC);
-  animation: glitch-pulse-shadow 0.75s ease 1s infinite alternate;
+  animation: glitch-pulse-shadow 0.5s ease 1.5s infinite alternate;
 }
 
 .homescreen h2 {
-  font-size: 2em;
-  text-shadow: 0 0 8px #9933FF88;
+  font-size: calc(2vh + 2vw);
+  text-shadow: 0 0 16px #9933FFCC;
 }
 
 .medialinks {

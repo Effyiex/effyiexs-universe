@@ -3,21 +3,21 @@
 const WALLPAPER = {
   canvas: undefined,
   frameCount: 0,
-  frameRate: 30,
+  frameRate: 24,
   mountains: [],
   stars: [],
   renderFrame: function() {
     this.canvas.width = this.canvas.clientWidth;
     this.canvas.height = this.canvas.clientHeight;
     this.frameCount += 1;
-    let ctx = this.canvas.getContext("2d");
+    const ctx = this.canvas.getContext("2d");
     ctx.fillStyle = "#131112";
     ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
     if(
-      this.frameCount % 48 == 0
+      this.frameCount % 32 == 0
       || this.mountains.length == 0
     ) {
-      let heights = [];
+      const heights = [];
       for(let i = 0; i < Math.random() * 16; i++) {
         heights.push({
           x: Math.random(),
@@ -56,7 +56,7 @@ const WALLPAPER = {
         this.stars[i].y = this.stars[i].initY;
       }
     }
-    let garbage = [];
+    const garbage = [];
     for(let i = 0; i < this.mountains.length; i++) {
       if(this.mountains[i].yLevel > 1) {
         garbage.push(i);
@@ -66,7 +66,7 @@ const WALLPAPER = {
       ctx.fillStyle = "#9933CC" + Math.floor(this.mountains[i].yLevel * 48).toString(16).padStart(2, "0");
       let translateY = this.mountains[i].yLevel * this.canvas.height;
       ctx.beginPath();
-      ctx.moveTo(0, this.canvas.height / 2 + translateY);
+      ctx.moveTo(-this.canvas.width / 4, this.canvas.height / 2 + translateY);
       for(let j = 0; j < this.mountains[i].heights.length; j++) {
         ctx.lineTo(
           (this.canvas.width / this.mountains[i].heights.length * j) 
@@ -74,7 +74,7 @@ const WALLPAPER = {
           this.canvas.height / 3 + this.mountains[i].heights[j].y * this.canvas.height / 12 + translateY
         )
       }
-      ctx.lineTo(this.canvas.width, this.canvas.height / 2 + translateY);
+      ctx.lineTo(this.canvas.width + this.canvas.width / 4, this.canvas.height / 2 + translateY);
       ctx.lineTo(this.canvas.width, this.canvas.height + translateY);
       ctx.lineTo(0, this.canvas.height + translateY);
       ctx.closePath();
@@ -89,8 +89,8 @@ const WALLPAPER = {
   },
   load: function() {
     this.canvas = document.querySelector(".wallpaper");
-    for(let i = 0; i < 24; i++) {
-      let initX = Math.random();
+    for(let i = 0; i < 16; i++) {
+      let initX = (i % 2 == 0 ? 0 : 0.5) + Math.random() * 0.5;
       let initY = Math.random();
       this.stars.push({
         initX: initX,
