@@ -6,12 +6,14 @@ const WALLPAPER = {
   frameCount: 0,
   frameRate: 24,
   mountainMaxHeights: 32,
-  mountainMaxHeightFactor: 0.025,
-  mountainSpawnInterval: 64,
+  mountainMaxHeightFactor: 0.1,
+  mountainSpawnInterval: 96,
   mountainBlendAlpha: 160,
   mountainMotion: 0.002,
-  mountainAreaFactor: 0.666,
+  mountainAreaFactor: 0.75,
   starScaleFactor: 0.025,
+  starMotionX: 0.01,
+  starMotionY: 0.0025,
   mountains: [],
   stars: [],
   newMountainHeights: function() {
@@ -47,7 +49,7 @@ const WALLPAPER = {
       ).toString(16).padStart(2, "0");
       ctx.fillRect(
         this.stars[i].x  * this.canvas.width, 
-        this.stars[i].y * this.canvas.height * (1 - this.mountainAreaFactor), 
+        this.stars[i].y * this.canvas.height * (1 - this.mountainAreaFactor) * 2, 
         this.stars[i].scale * this.canvas.width * this.starScaleFactor, 
         this.stars[i].scale * this.canvas.height * this.starScaleFactor
       );
@@ -58,8 +60,8 @@ const WALLPAPER = {
       ) {
         this.stars[i].pulseFactor *= -1;
       }
-      this.stars[i].y += this.stars[i].scale * 0.0025;
-      this.stars[i].x -= (0.5 - this.stars[i].initX) * 0.01;
+      this.stars[i].y += this.stars[i].scale * this.starMotionY;
+      this.stars[i].x -= (0.5 - this.stars[i].initX) * this.starMotionX;
       if(
         this.stars[i].x > 1 
         || this.stars[i].x < 0 
@@ -81,17 +83,16 @@ const WALLPAPER = {
       this.mountains[i].yLevel += this.mountainMotion;
       ctx.fillStyle = "#9933CC" + Math.floor(
         this.mountains[i].yLevel * this.mountainBlendAlpha 
-        + (255 - this.mountainBlendAlpha)
       ).toString(16).padStart(2, "0");
       const baseY = this.canvas.height * (1 - this.mountainAreaFactor);
-      const translateY = this.mountains[i].yLevel * this.canvas.height * this.mountainAreaFactor;
+      const translateY = this.mountains[i].yLevel * (this.canvas.height * this.mountainAreaFactor);
       ctx.beginPath();
       ctx.moveTo(-this.canvas.width / 4, baseY + translateY);
       for(let j = 0; j < this.mountains[i].heights.length; j++) {
         ctx.lineTo(
           (this.canvas.width / this.mountains[i].heights.length * j) 
             + (this.canvas.width / this.mountains[i].heights.length * this.mountains[i].heights[j].x),
-            baseY + this.mountains[i].heights[j].y * this.canvas.height * this.mountainMaxHeightFactor + translateY
+            baseY + this.mountains[i].heights[j].y * this.canvas.height * -this.mountainMaxHeightFactor + translateY
         )
       }
       ctx.lineTo(this.canvas.width + this.canvas.width / 4, baseY + translateY);
