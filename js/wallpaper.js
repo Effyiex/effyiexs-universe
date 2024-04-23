@@ -18,10 +18,10 @@ const WALLPAPER = {
       || this.mountains.length == 0
     ) {
       const heights = [];
-      for(let i = 0; i < Math.random() * 16; i++) {
+      for(let i = 0; i < Math.random() * 12; i++) {
         heights.push({
           x: Math.random(),
-          y: Math.random()
+          y: Math.random() * 0.25
         });
       }
       this.mountains.push({

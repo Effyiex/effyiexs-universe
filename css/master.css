@@ -17,12 +17,12 @@ body {
 
 body.lightmode {
   background-color: #AABADA;
-  filter: invert(100%) hue-rotate(157.5deg);
+  filter: invert(100%) brightness(65%) contrast(150%) hue-rotate(157.5deg);
   transition: filter 500ms ease;
 }
 
 body.lightmode .lightnegate {
-  filter: invert(100%) hue-rotate(210deg);
+  filter: invert(100%) brightness(75%) contrast(125%) hue-rotate(200deg);
 }
 
 h1, h2, h3 {
@@ -41,19 +41,20 @@ h1 {
 @keyframes glitch-pulse-shadow {
   0% {
     filter: drop-shadow(8px 6px 0.25em #99336688) drop-shadow(-8px -6px 0.25em #66339988) blur(3px);
-    transform: scaleX(1.075);
+    transform: scaleX(1.1) translateY(1%);
   }
   25% {
-    transform: scaleY(1.025);
+    transform: scaleY(0.9) translateY(-1%);
   }
   50% {
-    transform: scaleX(0.95);
+    transform: scaleY(1.1) translateX(1%);
   }
   75% {
-    transform: scaleY(0.975);
+    transform: scaleX(0.9) translateX(-1%);
   }
   100% {
     filter: drop-shadow(2px 4px 0.125em #99336688) drop-shadow(-2px -4px 0.125em #66339988) blur(1px);
+    transform: none;
   }
 }
 
@@ -63,14 +64,15 @@ h1 {
   padding: 0;
   width: calc(100% - 14px);
   height: 4em;
-  background-color: #0006;
+  background-color: #0008;
   border: #FFFFFF44 1px solid;
   border-radius: 4px;
   box-shadow: #CC339966 0px 0px 4px,
-              inset #9933CC66 0px 0px 12px;
+              inset #9933CC66 0px 0px 12px,
+              #0008 0px 4px 8px;
   display: inline-flex;
   flex-direction: row;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(2px);
 }
 
 .menubar img {
@@ -78,20 +80,21 @@ h1 {
   width: 3em;
   height: 3em;
   filter: drop-shadow(1px 2px 0.5em #993366CC) drop-shadow(-1px -2px 0.5em #663399CC);
-  animation: glitch-pulse-shadow 0.25s ease 0.75s infinite alternate;
+  animation: glitch-pulse-shadow 0.5s ease 0.5s infinite alternate;
   padding: 0.25em;
-  background-color: #4441;
+  background-color: #F8F1;
   border-radius: 50%;
+  border: #F8F2 1px solid;
 }
 
 .menubar h1 {
-  margin: 0 0.75em 0 0.5em;
+  margin: 0 0.75em 0 0.25em;
   padding: 0;
   font-size: 1.25em;
   color: #9966FFAA;
   text-shadow: 2px 4px 0.25em #993366CC, -2px -4px 0.25em #663399CC;
   font-weight: normal;
-  padding-right: 1.25em;
+  padding-right: 0.5em;
   padding-top: 0.25em;
   border-right: #FFF2 2px solid;
 }
@@ -219,11 +222,11 @@ body.lightmode .menubar .controls .lightswitch i:nth-child(2) {
 
 .homescreen h1 {
   font-size: calc(4vh + 4vw);
-  text-shadow: 0 0 8px #FF3399CC, 0 0 128px #9933FFCC;
+  text-shadow: 0 0 8px #FF3399CC, 0 12px 48px #9933FFCC;
   text-decoration: underline;
   text-decoration-color: #9933FF66;
   filter: drop-shadow(1px 2px 0.5em #993366CC) drop-shadow(-1px -2px 0.5em #663399CC);
-  animation: glitch-pulse-shadow 0.5s ease 1.5s infinite alternate;
+  animation: glitch-pulse-shadow 0.5s ease 1s infinite alternate;
 }
 
 .homescreen h2 {
@@ -233,23 +236,22 @@ body.lightmode .menubar .controls .lightswitch i:nth-child(2) {
 
 .medialinks {
   position: absolute;
-  bottom: 4em;
-  left: 4em;
-  right: 4em;
-  background-color: #0002;
+  width: 28em;
+  right: 24px;
+  bottom: 32px;
+  background-color: #0008;
   border-radius: 8px;
   box-shadow: 0 4px 8px #0008;
   opacity: 1;
+  backdrop-filter: blur(4px);
   transition: all 500ms ease;
 }
 
 .medialinks.minimized {
   width: 16em;
-  left: auto;
-  right: 24px;
   height: 4.5em;
-  bottom: 24px;
   opacity: 0.5;
+  backdrop-filter: none;
   transition: all 250ms ease;
 }
 
