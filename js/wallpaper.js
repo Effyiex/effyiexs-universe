@@ -2,42 +2,55 @@
 
 const WALLPAPER = {
   canvas: undefined,
-  blur: 16,
+  blur: 28,
   frameCount: 0,
   frameRate: 24,
-  mountainSpawnInterval: 96,
+  mountainMaxHeights: 32,
+  mountainMaxHeightFactor: 0.025,
+  mountainSpawnInterval: 64,
+  mountainBlendAlpha: 160,
+  mountainMotion: 0.002,
+  mountainAreaFactor: 0.666,
+  starScaleFactor: 0.025,
   mountains: [],
   stars: [],
+  newMountainHeights: function() {
+    const heights = [];
+    for(let _ = 0; _ < Math.random() * this.mountainMaxHeights; _++)
+    heights.push({
+      x: Math.random(),
+      y: Math.random()
+    });
+    return heights;
+  },
   renderFrame: function() {
+
     this.canvas.width = this.canvas.clientWidth / WALLPAPER.blur;
     this.canvas.height = this.canvas.clientHeight / WALLPAPER.blur;
     this.frameCount += 1;
+
     const ctx = this.canvas.getContext("2d");
-    ctx.fillStyle = "#131112";
+    ctx.fillStyle = "#232122";
     ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
-    if(
-      this.frameCount % this.mountainSpawnInterval == 0
-      || this.mountains.length == 0
-    ) {
-      const heights = [];
-      for(let i = 0; i < Math.random() * 12; i++) {
-        heights.push({
-          x: Math.random(),
-          y: Math.random() * 0.25
-        });
-      }
-      this.mountains.push({
-        yLevel: 0,
-        heights
-      })
-    }
+
+    if(this.frameCount % this.mountainSpawnInterval == 0)
+    this.mountains.push({
+      yLevel: 0,
+      heights: this.newMountainHeights()
+    });
+    
     for(let i = 0; i < this.stars.length; i++) {
       ctx.fillStyle = "#FF99FF" + Math.floor(
         this.stars[i].pulse * 64 
         + this.stars[i].scale * 32
         + (this.stars[i].initX > 0.5 ? (1 - this.stars[i].x) : (this.stars[i].x)) * 160
       ).toString(16).padStart(2, "0");
-      ctx.fillRect(this.stars[i].x  * this.canvas.width, this.stars[i].y * this.canvas.height / 4 * 3, this.stars[i].scale * this.canvas.width * 0.01, this.stars[i].scale * this.canvas.height * 0.01);
+      ctx.fillRect(
+        this.stars[i].x  * this.canvas.width, 
+        this.stars[i].y * this.canvas.height * (1 - this.mountainAreaFactor), 
+        this.stars[i].scale * this.canvas.width * this.starScaleFactor, 
+        this.stars[i].scale * this.canvas.height * this.starScaleFactor
+      );
       this.stars[i].pulse += 0.1 * this.stars[i].pulseFactor;
       if(
         this.stars[i].pulse > 1
@@ -58,25 +71,30 @@ const WALLPAPER = {
         this.stars[i].y = this.stars[i].initY;
       }
     }
+
     const garbage = [];
     for(let i = 0; i < this.mountains.length; i++) {
       if(this.mountains[i].yLevel > 1) {
         garbage.push(i);
         continue;
       }
-      this.mountains[i].yLevel += 0.002;
-      ctx.fillStyle = "#9933CC" + Math.floor(this.mountains[i].yLevel * 80).toString(16).padStart(2, "0");
-      let translateY = this.mountains[i].yLevel * this.canvas.height / 2;
+      this.mountains[i].yLevel += this.mountainMotion;
+      ctx.fillStyle = "#9933CC" + Math.floor(
+        this.mountains[i].yLevel * this.mountainBlendAlpha 
+        + (255 - this.mountainBlendAlpha)
+      ).toString(16).padStart(2, "0");
+      const baseY = this.canvas.height * (1 - this.mountainAreaFactor);
+      const translateY = this.mountains[i].yLevel * this.canvas.height * this.mountainAreaFactor;
       ctx.beginPath();
-      ctx.moveTo(-this.canvas.width / 4, this.canvas.height / 2 + translateY);
+      ctx.moveTo(-this.canvas.width / 4, baseY + translateY);
       for(let j = 0; j < this.mountains[i].heights.length; j++) {
         ctx.lineTo(
           (this.canvas.width / this.mountains[i].heights.length * j) 
             + (this.canvas.width / this.mountains[i].heights.length * this.mountains[i].heights[j].x),
-          this.canvas.height / 3 + this.mountains[i].heights[j].y * this.canvas.height / 12 + translateY
+            baseY + this.mountains[i].heights[j].y * this.canvas.height * this.mountainMaxHeightFactor + translateY
         )
       }
-      ctx.lineTo(this.canvas.width + this.canvas.width / 4, this.canvas.height / 2 + translateY);
+      ctx.lineTo(this.canvas.width + this.canvas.width / 4, baseY + translateY);
       ctx.lineTo(this.canvas.width, this.canvas.height + translateY);
       ctx.lineTo(0, this.canvas.height + translateY);
       ctx.closePath();
@@ -85,9 +103,11 @@ const WALLPAPER = {
     for(let i = 0; i < garbage.length; i++) {
       this.mountains.splice(garbage[i], 1);
     }
+
     setTimeout(() => {
       requestAnimationFrame(this.renderFrame.bind(this));
     }, 1000 / this.frameRate);
+
   },
   load: function() {
     this.canvas = document.querySelector(".wallpaper");
@@ -104,19 +124,11 @@ const WALLPAPER = {
         scale: 0.5 + Math.random() * 0.5
       });
     }
-    for(let i = 0; i < 10; i++) {
-      let heights = [];
-      for(let j = 0; j < Math.random() * 16; j++) {
-        heights.push({
-          x: Math.random(),
-          y: Math.random()
-        });
-      }
-      this.mountains.push({
-        yLevel: i * 0.1,
-        heights
-      })
-    }
+    for(let i = 0; i < 10; i++)
+    this.mountains.push({
+      yLevel: i * 0.1,
+      heights: this.newMountainHeights()
+    })
   }
 }; 
 
