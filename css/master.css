@@ -318,12 +318,12 @@ body.portrait .medialinks.minimized,
   left: 50%;
   justify-content: center;
   transform: translateX(-50%);
-  margin: 0.75em 0;
+  margin: 0;
   padding-top: 1.5em;
-  max-width: calc(100% - 4em);
+  max-width: calc(100% - 5em);
   flex-wrap: wrap;
-  background-color: #0001;
-  backdrop-filter: blur(3px);
+  background-color: #0002;
+  border: #0004 1px solid;
   border-radius: 8px;
 }
 

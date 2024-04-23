@@ -7,7 +7,7 @@ const WALLPAPER = {
   frameRate: 24,
   mountainMaxHeights: 32,
   mountainMaxHeightFactor: 0.1,
-  mountainSpawnInterval: 96,
+  mountainSpawnInterval: 48,
   mountainBlendAlpha: 160,
   mountainMotion: 0.002,
   mountainAreaFactor: 0.75,
@@ -29,6 +29,7 @@ const WALLPAPER = {
 
     this.canvas.width = this.canvas.clientWidth / WALLPAPER.blur;
     this.canvas.height = this.canvas.clientHeight / WALLPAPER.blur;
+
     this.frameCount += 1;
 
     const ctx = this.canvas.getContext("2d");
@@ -42,6 +43,7 @@ const WALLPAPER = {
     });
     
     for(let i = 0; i < this.stars.length; i++) {
+
       ctx.fillStyle = "#FF99FF" + Math.floor(
         this.stars[i].pulse * 64 
         + this.stars[i].scale * 32
@@ -53,6 +55,7 @@ const WALLPAPER = {
         this.stars[i].scale * this.canvas.width * this.starScaleFactor, 
         this.stars[i].scale * this.canvas.height * this.starScaleFactor
       );
+
       this.stars[i].pulse += 0.1 * this.stars[i].pulseFactor;
       if(
         this.stars[i].pulse > 1
@@ -60,6 +63,7 @@ const WALLPAPER = {
       ) {
         this.stars[i].pulseFactor *= -1;
       }
+
       this.stars[i].y += this.stars[i].scale * this.starMotionY;
       this.stars[i].x -= (0.5 - this.stars[i].initX) * this.starMotionX;
       if(
@@ -72,15 +76,19 @@ const WALLPAPER = {
         this.stars[i].x = this.stars[i].initX;
         this.stars[i].y = this.stars[i].initY;
       }
+
     }
 
     const garbage = [];
     for(let i = 0; i < this.mountains.length; i++) {
+
       if(this.mountains[i].yLevel > 1) {
         garbage.push(i);
         continue;
       }
+
       this.mountains[i].yLevel += this.mountainMotion;
+
       ctx.fillStyle = "#9933CC" + Math.floor(
         this.mountains[i].yLevel * this.mountainBlendAlpha 
       ).toString(16).padStart(2, "0");
@@ -100,10 +108,10 @@ const WALLPAPER = {
       ctx.lineTo(0, this.canvas.height + translateY);
       ctx.closePath();
       ctx.fill();
+
     }
-    for(let i = 0; i < garbage.length; i++) {
-      this.mountains.splice(garbage[i], 1);
-    }
+    for(let i = 0; i < garbage.length; i++) 
+    this.mountains.splice(garbage[i], 1);
 
     setTimeout(() => {
       requestAnimationFrame(this.renderFrame.bind(this));
