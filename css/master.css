@@ -25,8 +25,8 @@ body.lightmode .lightnegate {
   filter: invert(100%) brightness(75%) contrast(125%) hue-rotate(200deg);
 }
 
-h1, h2, h3 {
-  font-weight: normal;
+body.portrait {
+  font-size: calc(1vh + 1vw);
 }
 
 h1 {
@@ -41,13 +41,13 @@ h1 {
 @keyframes glitch-pulse-shadow {
   0% {
     filter: drop-shadow(8px 6px 0.25em #99336688) drop-shadow(-8px -6px 0.25em #66339988) blur(3px);
-    transform: scaleX(1.1) translateY(1%);
+    transform: scaleX(1.1) translateY(0.5%);
   }
   25% {
-    transform: scaleY(0.9) translateY(-1%);
+    transform: scaleY(0.95) translateY(-0.5%);
   }
   50% {
-    transform: scaleY(1.1) translateX(1%);
+    transform: scaleY(1.05) translateX(1%);
   }
   75% {
     transform: scaleX(0.9) translateX(-1%);
@@ -206,27 +206,22 @@ body.lightmode .menubar .controls .lightswitch i:nth-child(2) {
 
 .homescreen {
   position: relative;
-  width: calc(100% - 4em);
-  height: calc(100% - 20em);
+  width: calc(100%);
+  height: calc(100%);
   text-align: center;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .homescreen * {
-  position: relative;
-  top: 50%;
   color: #FFFFFF22;
   margin: 0;
 }
 
 .homescreen h1 {
+  margin-top: calc(50vh - 2em);
   font-size: calc(4vh + 4vw);
   text-shadow: 0 0 8px #FF3399CC, 0 12px 48px #9933FFCC;
   text-decoration: underline;
   text-decoration-color: #9933FF66;
-  filter: drop-shadow(1px 2px 0.5em #993366CC) drop-shadow(-1px -2px 0.5em #663399CC);
-  animation: glitch-pulse-shadow 0.5s ease 1s infinite alternate;
 }
 
 .homescreen h2 {
@@ -236,7 +231,9 @@ body.lightmode .menubar .controls .lightswitch i:nth-child(2) {
 
 .medialinks {
   position: absolute;
+  height: calc(100% - 8em);
   width: 28em;
+  max-width: calc(100% - 48px);
   right: 24px;
   bottom: 32px;
   background-color: #0008;
@@ -248,7 +245,7 @@ body.lightmode .menubar .controls .lightswitch i:nth-child(2) {
 }
 
 .medialinks.minimized {
-  width: 16em;
+  width: 12em;
   height: 4.5em;
   opacity: 0.5;
   backdrop-filter: none;
@@ -358,4 +355,39 @@ body.lightmode .menubar .controls .lightswitch i:nth-child(2) {
   transition: text-shadow 500ms ease;
   filter: drop-shadow(1px 2px 0.5em #993366CC) drop-shadow(-1px -2px 0.5em #663399CC);
   animation: glitch-pulse-shadow 0.25s ease 0.5s infinite alternate;
+}
+
+.medialinks.minimized .sc-player {
+  display: none;
+}
+
+.medialinks .sc-player {
+  display: block;
+  background-color: #0002;
+  border: #0004 1px solid;
+  border-radius: 8px;
+  left: 0;
+  right: 0;
+  padding: 1em;
+  margin: 1em;
+  margin-bottom: 3em;
+}
+
+.medialinks .sc-player h3 {
+  text-align: center;
+  position: relative;
+  top: auto;
+  font-size: 1.5em;
+  margin: 0.25em 0 0.5em 0;
+  color: #9933FF88;
+  text-shadow: 0 2px 4px #663399, 0 0 4px #000;
+}
+
+.medialinks .sc-player iframe {
+  position: relative;
+  top: auto;
+  opacity: 0.75;
+  width: 100%;
+  height: calc(100% - 3em);
+  border-radius: 4px;
 }

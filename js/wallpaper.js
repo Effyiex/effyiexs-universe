@@ -2,19 +2,21 @@
 
 const WALLPAPER = {
   canvas: undefined,
+  blur: 16,
   frameCount: 0,
   frameRate: 24,
+  mountainSpawnInterval: 96,
   mountains: [],
   stars: [],
   renderFrame: function() {
-    this.canvas.width = this.canvas.clientWidth;
-    this.canvas.height = this.canvas.clientHeight;
+    this.canvas.width = this.canvas.clientWidth / WALLPAPER.blur;
+    this.canvas.height = this.canvas.clientHeight / WALLPAPER.blur;
     this.frameCount += 1;
     const ctx = this.canvas.getContext("2d");
     ctx.fillStyle = "#131112";
     ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
     if(
-      this.frameCount % 64 == 0
+      this.frameCount % this.mountainSpawnInterval == 0
       || this.mountains.length == 0
     ) {
       const heights = [];
