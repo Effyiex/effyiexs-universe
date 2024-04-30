@@ -231,7 +231,8 @@ body.lightmode .menubar .controls .lightswitch i:nth-child(2) {
 
 .medialinks {
   position: absolute;
-  height: calc(100% - 8em);
+  max-height: calc(100% - 8em);
+  overflow: hidden;
   width: 28em;
   max-width: calc(100% - 48px);
   right: 24px;
@@ -325,6 +326,7 @@ body.portrait .medialinks.minimized,
   background-color: #0002;
   border: #0004 1px solid;
   border-radius: 8px;
+  margin-bottom: 1em;
 }
 
 .medialinks ul li a {
@@ -378,12 +380,8 @@ body.portrait .medialinks.minimized,
   background-color: #0002;
   border: #0004 1px solid;
   border-radius: 8px;
-  position: absolute;
-  left: 0;
-  right: 0;
   padding: 1em;
   margin: 1em;
-  bottom: 0;
 }
 
 .medialinks .sc-player h3 {
@@ -403,4 +401,5 @@ body.portrait .medialinks.minimized,
   width: 100%;
   height: calc(100% - 3em);
   border-radius: 4px;
+  margin-bottom: 1em;
 }
