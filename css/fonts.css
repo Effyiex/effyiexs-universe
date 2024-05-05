@@ -1,0 +1,32 @@
+
+@font-face {
+  font-family: "Cantarell Regular";
+  src:
+    url("fonts/Cantarell-Regular.ttf") 
+    format("truetype");
+}
+
+@font-face {
+  font-family: "Cantarell Bold";
+  src:
+    url("fonts/Cantarell-Bold.ttf") 
+    format("truetype");
+}
+
+@font-face {
+  font-family: "Itim Regular";
+  src:
+    url("fonts/Itim-Regular.ttf") 
+    format("truetype");
+}
+
+* {
+  font-family: "Cantarell Regular", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6,
+h1 *, h2 *, h3 *, h4 *, h5 *, h6 * {
+  font-family: "Itim Regular", sans-serif;
+}
+
+

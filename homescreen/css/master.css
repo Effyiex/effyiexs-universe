@@ -1,0 +1,29 @@
+
+body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: #FFFFFF22;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  position: relative;
+  top: 25%;
+  font-size: calc(4vh + 4vw);
+  text-shadow: 0 0 8px #FF3399CC, 0 12px 48px #9933FFCC;
+  text-decoration: underline;
+  text-decoration-color: #9933FF66;
+}
+
+h2 {
+  position: relative;
+  top: calc(25% - 1em);
+  font-size: calc(2vh + 2vw);
+  text-shadow: 0 0 16px #9933FFCC;
+}
+
