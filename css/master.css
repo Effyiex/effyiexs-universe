@@ -7,7 +7,7 @@ body {
   top: 0;
   right: 0;
   bottom: 0;
-  background-color: #3C333F;
+  background-color: #11111F;
   overflow: hidden;
   margin: 0;
   padding: 0;
@@ -59,12 +59,11 @@ body.portrait {
   padding: 0;
   width: calc(100% - 14px);
   height: 4em;
-  background-color: #0008;
+  background-color: #2048;
   border: #FFFFFF44 1px solid;
   border-radius: 4px;
-  box-shadow: #CC339966 0px 0px 4px,
-              inset #9933CC66 0px 0px 12px,
-              #0008 0px 4px 8px;
+  box-shadow: #33116688 0px 4px 4px,
+              inset #9933CC66 0px 0px 2em;
   display: inline-flex;
   flex-direction: row;
   backdrop-filter: blur(3px);
@@ -196,7 +195,6 @@ body.lightmode .menubar .controls .lightswitch i:nth-child(2) {
   height: 100%;
   border-radius: 4px;
   opacity: 0.75;
-  filter: blur(4px);
 }
 
 .content-display {
