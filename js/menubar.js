@@ -12,9 +12,11 @@ const LIGHTMODE = {
         if(this.active) {
             if(!document.body.classList.contains("lightmode"))
             document.body.classList.add("lightmode");
+            document.head.querySelector(".theme-link").setAttribute("href", "css/themes/default-light.css");
         } else {
             if(document.body.classList.contains("lightmode"))
             document.body.classList.remove("lightmode");
+            document.head.querySelector(".theme-link").setAttribute("href", "css/themes/default-dark.css");
         }
     },
     toggle: function() {
