@@ -35,7 +35,7 @@ const WALLPAPER = {
     const lightmode = document.body.classList.contains("lightmode");
 
     const ctx = this.canvas.getContext("2d");
-    ctx.fillStyle = (lightmode ? "#68807F" : "#18101F");
+    ctx.fillStyle = (lightmode ? "#48605F" : "#18101F");
     ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
     if(this.frameCount % this.mountainSpawnInterval == 0)
@@ -91,7 +91,7 @@ const WALLPAPER = {
 
       this.mountains[i].yLevel += this.mountainMotion;
 
-      ctx.fillStyle = (lightmode ? "#66FFCC" : "#9933CC") + Math.floor(
+      ctx.fillStyle = (lightmode ? "#66CC99" : "#9933CC") + Math.floor(
         this.mountains[i].yLevel * this.mountainBlendAlpha 
       ).toString(16).padStart(2, "0");
       const baseY = this.canvas.height * (1 - this.mountainAreaFactor);

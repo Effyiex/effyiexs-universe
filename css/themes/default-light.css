@@ -1,16 +1,16 @@
 
 :root {
 
-    --color-base-bg: #CC66AA;
-    --color-base-bga-lowest: #CC66AA44;  
-    --color-base-bga-low: #CC66AA66;
-    --color-base-bga-middle: #CC66AA88;
-    --color-base-bga-high: #CC66AAAA;
-    --color-base-bga-highest: #CC66AACC;
+    --color-base-bg: #BB88CC;
+    --color-base-bga-lowest: #BB88CC44;  
+    --color-base-bga-low: #BB88CC66;
+    --color-base-bga-middle: #BB88CC88;
+    --color-base-bga-high: #BB88CCAA;
+    --color-base-bga-highest: #BB88CCCC;
 
-    --color-theme: #33CC99;
-    --color-theme-shade: #33CC9966;
-    --color-theme-light: #33CC99AA;
+    --color-theme: #44CC88;
+    --color-theme-shade: #44CC8866;
+    --color-theme-light: #44CC88AA;
 
     --color-theme-bg: #339966; 
     --color-theme-bg-shade: #33996688;
@@ -19,9 +19,9 @@
     --color-theme-shadow: #116633;
     --color-theme-shadow-shade: #11663388;
     
-    --color-first-ac: #CC99FF;
-    --color-first-ac-shade: #CC99FF66;
-    --color-first-ac-light: #CC99FFAA;
+    --color-first-ac: #BB4488;
+    --color-first-ac-shade: #BB448866;
+    --color-first-ac-light: #BB4488AA;
 
     --color-first-ac-bg: #993399;
     --color-first-ac-bg-shade: #99339988;

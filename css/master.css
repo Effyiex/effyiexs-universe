@@ -95,7 +95,7 @@ body.portrait {
 }
 
 .menubar h3 {
-  color: var(--color-first-ac-shade);
+  color: var(--color-first-ac-light);
   font-size: 1.5em;
   margin: 0.625em 0.5em;
   user-select: none;
@@ -199,14 +199,30 @@ body.lightmode .menubar .controls .lightswitch i:nth-child(2) {
   height: 100%;
 }
 
+* {
+  scrollbar-width: 1em;
+  scrollbar-color: var(--color-first-ac) var(--color-base-bg);
+}
+
+.content-control-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3em;
+  background-color: var(--color-base-bga-middle);
+  border-top: var(--color-base-bga-highest) 1px solid;
+}
+
 .medialinks {
   position: absolute;
-  max-height: calc(100% - 8em);
-  overflow: hidden;
+  max-height: calc(100% - 12em);
+  overflow-x: hidden;
+  overflow-y: scroll;
   width: 28em;
   max-width: calc(100% - 48px);
   right: 24px;
-  bottom: 32px;
+  bottom: 4.75em;
   background-color: var(--color-base-bga-high);
   border-radius: 8px;
   box-shadow: 0 4px 8px var(--color-base-bga-high);
@@ -226,6 +242,7 @@ body.portrait .medialinks.minimized,
   opacity: 0.75;
   backdrop-filter: none;
   transition: all 250ms ease;
+  overflow: hidden;
 }
 
 .medialinks.minimized:hover {
@@ -233,12 +250,11 @@ body.portrait .medialinks.minimized,
 }
 
 .medialinks h2 {
-  cursor: pointer;
   user-select: none;
   text-align: left;
   color: var(--color-first-ac-light);
   padding: 0.75em;
-  padding-right: 3em;
+  padding-right: 2em;
   background-color: var(--color-base-bga-middle);
   border-radius: 8px 8px 0 0;
   border: var(--color-base-bga-low) 1px solid;
@@ -260,6 +276,7 @@ body.portrait .medialinks.minimized,
   height: 1.5em;
   border-radius: 50%;
   color: var(--color-theme-light);
+  cursor: pointer;
 }
 
 .medialinks button i:nth-child(1) {
@@ -361,8 +378,8 @@ body.portrait .medialinks.minimized,
   top: auto;
   font-size: 1.5em;
   margin: 0.25em 0 0.5em 0;
-  color: var(--color-theme-shade);
-  text-shadow: 0 2px 4px var(--color-theme), 0 0 4px var(--color-base-bga-highest);
+  color: var(--color-theme-bg-light);
+  text-shadow: 0 2px 4px var(--color-theme);
 }
 
 .medialinks .sc-player iframe {

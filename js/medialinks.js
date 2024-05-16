@@ -1,8 +1,8 @@
 
 window.addEventListener("load", () => {
-  let mediaLinks = document.querySelector(".medialinks");
-  let mediaLinksHeader = mediaLinks.querySelector("h2");
-  mediaLinksHeader.addEventListener("click", () => {
+  const mediaLinks = document.querySelector(".medialinks");
+  const mediaLinksToggle = mediaLinks.querySelector("button");
+  mediaLinksToggle.addEventListener("click", () => {
     mediaLinks.classList.toggle("minimized");
   });
 });
